@@ -25,14 +25,17 @@ Anatomy of a **Super Duper App** — what every app in the family shares and how
 
 ## Before you write code
 
-1. Read [brale-api.md](brale-api.md) and the [Brale Agent Kit AGENTS.md](https://github.com/superduperdot/brale-agent-kit/blob/main/AGENTS.md).
-2. Copy templates from [../templates/](../templates/).
-3. Skim the relevant [lessons/](../lessons/) file for the app closest to yours.
-4. If deploying to Cloudflare, read [cloudflare-stack.md](cloudflare-stack.md).
+1. Read [naming-conventions.md](naming-conventions.md) — decide repo slug, display name, and npm scope **first**.
+2. Copy [templates/SEED-PROMPT.md](../templates/SEED-PROMPT.md) into your agent session when bootstrapping.
+3. Read [brale-api.md](brale-api.md) and the [Brale Agent Kit AGENTS.md](https://github.com/superduperdot/brale-agent-kit/blob/main/AGENTS.md).
+4. Copy templates from [../templates/](../templates/).
+5. Skim the relevant [lessons/](../lessons/) file for the app closest to yours.
+6. If deploying to Cloudflare, read [cloudflare-stack.md](cloudflare-stack.md).
 
 ## New app checklist
 
-- [ ] README follows [templates/README.md](../templates/README.md) skeleton
+- [ ] Names decided per [naming-conventions.md](naming-conventions.md) (repo slug, display name, npm package)
+- [ ] README follows [templates/README.md](../templates/README.md) skeleton (H1 = display name)
 - [ ] `brain.md`, `AGENTS.md`, `architecture.md` present
 - [ ] Customer focus stated in first screen of README
 - [ ] Brale API table in README (even if "none — client-side only")
@@ -44,6 +47,8 @@ Anatomy of a **Super Duper App** — what every app in the family shares and how
 
 ## Related
 
+- [naming-conventions.md](naming-conventions.md) — repo, display, package, UI copy
+- [../templates/SEED-PROMPT.md](../templates/SEED-PROMPT.md) — bootstrap prompt
 - [value-layer.md](value-layer.md) — grammar in UI and code
 - [design-style.md](design-style.md) — visual conventions
 - [ai-agents.md](ai-agents.md) — brain.md and AGENTS.md patterns

@@ -5,7 +5,9 @@ Guidance for AI agents and contributors. Read [brain.md](./brain.md) first.
 ## Before you start
 
 - Read [brain.md](./brain.md) and [architecture.md](./architecture.md).
+- Read [naming-conventions.md](https://github.com/superduperlabs/super-duper-guide/blob/main/guide/naming-conventions.md) before creating repos or UI copy.
 - Read the [Super Duper Guide](https://github.com/superduperlabs/super-duper-guide).
+- Use [SEED-PROMPT.md](https://github.com/superduperlabs/super-duper-guide/blob/main/templates/SEED-PROMPT.md) when bootstrapping a new app in the family.
 - Read [Brale Agent Kit AGENTS.md](https://github.com/superduperdot/brale-agent-kit/blob/main/AGENTS.md) if this app uses the Brale API.
 
 ## Build & verify

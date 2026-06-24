@@ -18,7 +18,9 @@ This repo is the collective knowledge of the family. It improves every time an a
 ## Start here
 
 1. [guide/getting-started.md](guide/getting-started.md) — anatomy of a Super Duper App
-2. [guide/brale-api.md](guide/brale-api.md) — Brale API patterns and pitfalls
+2. [guide/naming-conventions.md](guide/naming-conventions.md) — repo, display, package, and UI naming (**read before creating a repo**)
+3. [templates/SEED-PROMPT.md](templates/SEED-PROMPT.md) — copy-paste bootstrap prompt for new apps
+4. [guide/brale-api.md](guide/brale-api.md) — Brale API patterns and pitfalls
 3. [guide/cloudflare-stack.md](guide/cloudflare-stack.md) — which Cloudflare primitive when
 4. [guide/csf-gsf.md](guide/csf-gsf.md) — Commons Stablecoin Format and Graph Standard Format
 5. [lessons/README.md](lessons/README.md) — how lessons flow back into this guide
@@ -38,6 +40,7 @@ This repo is the collective knowledge of the family. It improves every time an a
 Copy from [templates/](templates/) when starting a new app:
 
 - [README.md](templates/README.md) — standard README skeleton
+- [SEED-PROMPT.md](templates/SEED-PROMPT.md) — copy-paste agent prompt for bootstrapping a new app
 - [brain.md](templates/brain.md) — project source of truth
 - [AGENTS.md](templates/AGENTS.md) — working agreement for contributors and AI agents
 - [architecture.md](templates/architecture.md) — as-built architecture

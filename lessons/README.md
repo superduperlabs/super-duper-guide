@@ -34,7 +34,7 @@ Example:
 | A Cloudflare gotcha is discovered | `guide/cloudflare-stack.md` gotchas + `lessons/<app>.md` |
 | A security control is added/changed | `guide/security.md` + repo README |
 | CSF or GSF is implemented/extended | `guide/csf-gsf.md` |
-| A new app is created | `guide/getting-started.md` + new `lessons/<app>.md` |
+| A new app is created | `guide/getting-started.md` + `guide/naming-conventions.md` + `templates/SEED-PROMPT.md` + new `lessons/<app>.md` |
 | Brale docs change (`llms.txt`) | Verify `guide/brale-api.md` |
 | `brale-agent-kit/AGENTS.md` updated | Pull new `[learned:]` into `guide/brale-api.md` |
 | A `brain.md` entry is added | Export here if it helps other apps |

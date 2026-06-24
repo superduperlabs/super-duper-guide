@@ -44,7 +44,7 @@ This guide is the collective knowledge of the Super Duper Apps family. It improv
 | A Cloudflare gotcha is discovered | `guide/cloudflare-stack.md` gotchas + `lessons/<app>.md` |
 | A security control is added/changed | `guide/security.md` + repo README |
 | CSF or GSF is implemented/extended | `guide/csf-gsf.md` Where this is used |
-| A new app is created | `guide/getting-started.md` family table + new `lessons/<app>.md` + templates in repo |
+| A new app is created | `guide/getting-started.md` family table + `guide/naming-conventions.md` + new `lessons/<app>.md` + [SEED-PROMPT.md](templates/SEED-PROMPT.md) |
 | Brale docs change | `guide/brale-api.md` — verify endpoint references |
 | `brale-agent-kit/AGENTS.md` is updated | Pull new `[learned:]` entries into `guide/brale-api.md` |
 | A `brain.md` entry is added in any app | Export to `lessons/<app>.md` if it helps other apps |
