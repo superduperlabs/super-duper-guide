@@ -4,6 +4,10 @@ The playbook for building **Super Duper Apps** — open-source (MIT), Brale API�
 
 This repo is the collective knowledge of the family. It improves every time an app is built, debugged, or shipped.
 
+## Access model
+
+This guide is **public**. The app repos listed below are currently **private** — links will return 404 unless you have org access. Each app's description and conventions are documented here in the guide so the patterns are accessible to everyone.
+
 ## The family
 
 | App | Customer focus | Runtime | Brale surface |
@@ -21,9 +25,9 @@ This repo is the collective knowledge of the family. It improves every time an a
 2. [guide/naming-conventions.md](guide/naming-conventions.md) — repo, display, package, and UI naming (**read before creating a repo**)
 3. [templates/SEED-PROMPT.md](templates/SEED-PROMPT.md) — copy-paste bootstrap prompt for new apps
 4. [guide/brale-api.md](guide/brale-api.md) — Brale API patterns and pitfalls
-3. [guide/cloudflare-stack.md](guide/cloudflare-stack.md) — which Cloudflare primitive when
-4. [guide/csf-gsf.md](guide/csf-gsf.md) — Commons Stablecoin Format and Graph Standard Format
-5. [lessons/README.md](lessons/README.md) — how lessons flow back into this guide
+5. [guide/cloudflare-stack.md](guide/cloudflare-stack.md) — which Cloudflare primitive when
+6. [guide/csf-gsf.md](guide/csf-gsf.md) — Commons Stablecoin Format and Graph Standard Format
+7. [lessons/README.md](lessons/README.md) — how lessons flow back into this guide
 
 ## External references
 
