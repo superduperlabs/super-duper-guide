@@ -22,6 +22,7 @@ Anatomy of a **Super Duper App** — what every app in the family shares and how
 | super-duper-data | Cloudflare Workers | full orchestration | — | feed labels | planned |
 | super-duper-dashboard | Cloudflare + Next.js | full orchestration | chain meta | transfer display | planned |
 | super-duper-analysis | Cloudflare Workers | — | VT/TT registry | native renderer | relationship graph |
+| super-duper-benchmark | Cloudflare Workers | transfers, webhooks | — | route matrix labels | — |
 
 ## Before you write code
 

@@ -18,6 +18,7 @@ This guide is **public**. The app repos listed below are currently **private** �
 | [super-duper-data](https://github.com/superduperlabs/super-duper-data) | Brale customers who want a real-time analytics command center | Cloudflare Workers | `api.brale.xyz` (full orchestration) |
 | [super-duper-dashboard](https://github.com/superduperlabs/super-duper-dashboard) | Brale API users who want a self-hosted neobank dashboard | Cloudflare Workers + Next.js | `api.brale.xyz` (full orchestration) |
 | [super-duper-analysis](https://github.com/superduperlabs/super-duper-analysis) | Compliance teams needing transaction monitoring and investigation | Cloudflare Workers | `brale.network/api` (registry); own KYT API |
+| [super-duper-benchmark](https://github.com/superduperlabs/super-duper-benchmark) | Brale customers validating transfer/swap performance across all routes | Cloudflare Workers | `api.brale.xyz` (transfers, webhooks) |
 
 ## Start here
 
@@ -59,6 +60,7 @@ Copy from [templates/](templates/) when starting a new app:
 - [data.md](lessons/data.md) — Super Duper Data
 - [dashboard.md](lessons/dashboard.md) — Super Duper Dashboard
 - [analysis.md](lessons/analysis.md) — Super Duper Analysis
+- [benchmark.md](lessons/benchmark.md) — Super Duper Benchmark
 
 ## License
 
