@@ -72,7 +72,38 @@ When building cross-rail logic:
 
 `[learned: super-duper-analysis/docs/decisions/]`
 
+## Money rules
+
+**Hard rules** for handling monetary amounts in any Super Duper App:
+
+1. **Amounts are decimal strings, two decimals for money. Never floats.** IEEE 754 causes rounding errors — `0.1 + 0.2 !== 0.3`.
+2. `amount.value` from the Brale API is already a string — keep it as a string through the entire stack.
+3. For display: `parseFloat(amount).toFixed(2)` only at the presentation boundary.
+4. For Zod validation: `z.string().regex(/^\d+\.\d{2}$/)` or equivalent.
+5. `Idempotency-Key` required on every POST/PATCH that creates or modifies a financial resource.
+6. Every Exchange (conversion) must be explicit in the ledger with rate and cost — never hidden.
+
+`[learned: gradient/AGENTS.md §Money]`
+
+## End-user terminology
+
+Apps that wrap the Brale API for non-technical users (bank treasurers, compliance officers) should map internal vocabulary to plain language. **Never expose** ValueType, TransferType, Exchange, or Leg in user-facing UI.
+
+| Users see | Engine is |
+|-----------|-----------|
+| Balance | Amount of a ValueType on a wallet |
+| Send / receive / wire | Transfer = flow of Legs |
+| Convert / fund | Exchange |
+| USD, USDC, SBC | ValueType |
+| Visa, Mastercard | Card network (a TransferType) |
+| Solana, Canton, Base | TransferType |
+
+**Public API mapping:** Use `currency` + `chain` in API responses. The engine maps to `value_type` + `transfer_type` internally.
+
+`[learned: gradient/AGENTS.md §Language]`
+
 ## Related
 
 - [csf-gsf.md](csf-gsf.md)
 - [brale-api.md](brale-api.md)
+- [managed-accounts.md](managed-accounts.md) — transfer status machine uses Value Layer display

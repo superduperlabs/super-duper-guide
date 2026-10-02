@@ -63,6 +63,51 @@ Referenced explicitly in **super-duper-intents** production UI review: [ui-app/r
 
 Run: `npm run test` in super-duper-data.
 
+## CSS Modules alternative
+
+Not every app needs Tailwind. **CSS Modules** (`*.module.css`) with CSS custom properties as design tokens are a lighter alternative that enforces consistency through token constraints rather than utility classes.
+
+### Pattern
+
+Define design tokens as CSS custom properties on `:root`:
+
+```css
+:root {
+  --ink: #1a1a1a;
+  --muted: #8a8a8a;
+  --signal: #e05a00;      /* single accent color */
+  --elev-01: #f5f5f5;
+  --line: #e0e0e0;
+  --font-mono: "SF Mono", "Fira Code", monospace;
+  --space-2: 4px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --control-height: 40px;
+}
+```
+
+Use `composes` to extend base classes:
+
+```css
+.input { height: var(--control-height); border: 1px solid var(--line); }
+.select { composes: input; appearance: none; background-image: url("data:...chevron..."); }
+```
+
+### Design rules
+
+- 14px minimum font size (accessibility)
+- No border-radius anywhere (sharp, industrial aesthetic)
+- Single accent color (`--signal`) — used sparingly
+- Depth by lightness, not shadows
+
+### Where this is used
+
+| App | Aesthetic |
+|-----|-----------|
+| **Gradient** | Apple/Teenage Engineering — mono chrome, depth by lightness, no radius, signal focus |
+
+`[learned: gradient/apps/web/src/pages/*.module.css]`
+
 ## Related
 
 - [csf-gsf.md](csf-gsf.md) — visualization standards

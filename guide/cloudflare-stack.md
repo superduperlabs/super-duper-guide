@@ -139,6 +139,64 @@ Non-blocking work after response (webhook ack, cache put, D1 writes).
 
 `[learned: super-duper-intents/brain.md]`
 
+## Hono + chanfana (OpenAPI from Zod)
+
+For Workers that serve as an API, **Hono + chanfana** gives you automatic OpenAPI schema generation from Zod schemas with zero extra maintenance.
+
+Every route is an `OpenAPIRoute` class with a `schema` property containing Zod schemas for request body, query params, and response shapes. Chanfana auto-generates `/openapi` docs. Validation is free — Zod schemas ARE the API contract.
+
+```typescript
+import { OpenAPIRoute } from "chanfana";
+import { z } from "zod";
+
+const Body = z.object({ amount: z.object({ value: z.string() }) });
+
+export class CreateTransfer extends OpenAPIRoute {
+  schema = {
+    request: { body: { content: { "application/json": { schema: Body } } } },
+    responses: { "201": { description: "Transfer created", content: { "application/json": { schema: TransferResponse } } } },
+  };
+  async handle(c) { /* ... */ }
+}
+```
+
+Chanfana validation errors return `{ errors: [...] }` with field paths — parse these on the frontend for user-facing messages.
+
+**Where this is used:** Gradient (all routes)
+
+`[learned: gradient/apps/api/src/routes/*.ts]`
+
+## Multi-tenancy
+
+For B2B apps where one user manages accounts at multiple organizations.
+
+### Pattern
+
+- `memberships` table: `(user_id, organization_id, role, created_at)`
+- Session has an active `organization_id` — all queries scope to it
+- `POST /session/switch` changes the active org without re-authentication
+- `POST /workspaces` creates a new org + Brale account + wallet + membership atomically
+- Frontend: workspace-switcher dropdown (Linear-style) listing all orgs the user belongs to
+
+**Where this is used:** Gradient (WorkspaceMenu component, multi-workspace support)
+
+`[learned: gradient/apps/api/src/routes/sessions.ts, gradient/apps/web/src/components/WorkspaceMenu.tsx]`
+
+## Admin + gated access
+
+For apps that need controlled onboarding (not fully self-serve) with a separate admin panel.
+
+### Pattern
+
+- **Separate admin auth** — its own session tokens, its own `/admin/*` routes, separate from user auth
+- **Invite codes** — admin generates readable codes (`GRD-XXXXX-XXXXX`), single-use, with optional expiry
+- **Gated signup** — signup requires an invite code; frontend validates on "Continue" (before email code), backend atomically consumes on account creation
+- **Atomic consumption** — `UPDATE invite_codes SET status='used', used_by_org_id=? WHERE id=? AND status='active'`
+
+**Where this is used:** Gradient (admin-auth.ts, admin-invites.ts, organizations.ts)
+
+`[learned: gradient/apps/api/src/routes/admin-invites.ts, gradient/apps/api/src/routes/organizations.ts]`
+
 ## Next.js on Cloudflare
 
 **super-duper-dashboard** uses `@opennextjs/cloudflare` + D1 (Drizzle) + KV for Next.js incremental cache.
@@ -152,9 +210,12 @@ Non-blocking work after response (webhook ack, cache put, D1 writes).
 | External font CDNs | Self-host Geist; `font-src 'self'` CSP | `[learned: super-duper-data/brain.md]` |
 | Wrong deploy assets dir | Deploy from built output dir (e.g. `dist/brale_analytics/`) | `[learned: super-duper-data/brain.md]` |
 | Poll don't subscribe on Workers | HTTP polling for EVM/Solana confirmation | `[learned: super-duper-intents/brain.md]` |
+| Vite proxy port mismatch | Vite proxy `target` must match wrangler's actual port (8788, not 8787). Wrong port → HTML error response → JSON parse failure | `[learned: gradient/apps/web/vite.config.ts]` |
 
 ## Related
 
 - [brale-api.md](brale-api.md) — webhook and sync patterns
 - [security.md](security.md) — encryption and secrets in Workers
+- [managed-accounts.md](managed-accounts.md) — auto-sweep, poller, status machine patterns
 - [lessons/data.md](../lessons/data.md) — Cloudflare lessons from Super Duper Data
+- [lessons/gradient.md](../lessons/gradient.md) — Cloudflare lessons from Gradient
