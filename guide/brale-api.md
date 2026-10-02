@@ -122,6 +122,27 @@ Testnet vs mainnet is determined by **which API client** minted the token, not U
 - **super-duper-dashboard** — global mainnet/testnet toggle
 - **super-duper-data** — testnet transfer type detection on either leg
 
+## Managed accounts
+
+For apps that onboard businesses through Brale's managed account API (not just send individual transfers), see the dedicated **[managed-accounts.md](managed-accounts.md)** page, which covers:
+
+- Onboarding lifecycle (signup → testnet → mainnet KYB → live operations)
+- KYB data transit-only pattern (never persist, never log)
+- Auto-sweep architecture (inbound deposits → preferred hold)
+- Transfer status state machine (pending → settling → settled → failed)
+- Two-job poller for self-healing webhook resilience
+- Legal compliance (Terms, Privacy Policy, Brale EUA acceptance tracking)
+
+### Where this is used
+
+| App | Managed account scope |
+|-----|----------------------|
+| **Gradient** | Full lifecycle: multi-workspace B2B treasury with KYB, auto-sweep, poller |
+| **super-duper-dashboard** | Transfers + safety-net poll (no KYB, no sweep) |
+| **super-duper-data** | Sync + webhooks + alarm poll (no KYB, no sweep) |
+
+`[learned: gradient/AGENTS.md, gradient/apps/api/src/routes/webhooks.ts]`
+
 ## Agent policy layer
 
 For agents that move money: PolicyEngine + AuditLog before every transfer.
@@ -131,6 +152,7 @@ For agents that move money: PolicyEngine + AuditLog before every transfer.
 
 ## Related
 
+- [managed-accounts.md](managed-accounts.md) — full managed account lifecycle, auto-sweep, KYB compliance
 - [cloudflare-stack.md](cloudflare-stack.md) — Workers deployment patterns
 - [value-layer.md](value-layer.md) — ValueType and TransferType in UI
 - [brale-agent-kit](https://github.com/superduperdot/brale-agent-kit) — full endpoint reference and reference code

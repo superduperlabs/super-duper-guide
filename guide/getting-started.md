@@ -22,6 +22,7 @@ Anatomy of a **Super Duper App** — what every app in the family shares and how
 | super-duper-data | Cloudflare Workers | full orchestration | — | feed labels | planned |
 | super-duper-dashboard | Cloudflare + Next.js | full orchestration | chain meta | transfer display | planned |
 | super-duper-analysis | Cloudflare Workers | — | VT/TT registry | native renderer | relationship graph |
+| gradient | Cloudflare Workers | full orchestration | — | transfer display | — |
 
 ## Before you write code
 
@@ -31,6 +32,7 @@ Anatomy of a **Super Duper App** — what every app in the family shares and how
 4. Copy templates from [../templates/](../templates/).
 5. Skim the relevant [lessons/](../lessons/) file for the app closest to yours.
 6. If deploying to Cloudflare, read [cloudflare-stack.md](cloudflare-stack.md).
+7. If building a managed account or treasury app, read [managed-accounts.md](managed-accounts.md).
 
 ## New app checklist
 

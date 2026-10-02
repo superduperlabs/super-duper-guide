@@ -58,3 +58,4 @@ Example:
 - [data.md](data.md)
 - [dashboard.md](dashboard.md)
 - [analysis.md](analysis.md)
+- [gradient.md](gradient.md)

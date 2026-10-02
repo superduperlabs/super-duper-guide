@@ -147,6 +147,38 @@ Legacy worker names (`better-intents-ui`, `superduperkyt-api`) are deploy identi
 - **README badge line:** `**License:** [MIT](./LICENSE)`
 - **Footer:** link to [Super Duper Guide](https://github.com/superduperlabs/super-duper-guide)
 
+## Entity IDs
+
+Prefix every generated ID so you can tell what kind of entity it refers to at a glance — in logs, D1 tables, API responses, and support conversations.
+
+### Pattern
+
+```
+{prefix}_{random}
+```
+
+Use a shared `generateId(entityType)` function that produces a prefixed ID (e.g., `org_2xKj9...`, `tr_8mNp4...`).
+
+### Recommended prefixes
+
+| Prefix | Entity | Example |
+|--------|--------|---------|
+| `org_` | Organization | `org_2xKj9R4va5X` |
+| `usr_` | User | `usr_bz2Z1gvLv` |
+| `mem_` | Membership | `mem_3DZW3qp4v` |
+| `wlt_` | Wallet | `wlt_RR0OAvFEH` |
+| `tr_` | Transfer | `tr_BAltIXZcyR` |
+| `dst_` | Destination | `dst_5mNp4Kj2x` |
+| `sess_` | Session | `sess_qUtLwLLaL` |
+
+Extend with your own prefixes as needed. The key rule: **every entity type gets a unique prefix**.
+
+### External IDs
+
+Keep provider IDs (Brale KSUIDs/UUIDs, Visa tokens, etc.) internal. Never expose them in public API responses or user-facing UI. Map them to your own prefixed IDs.
+
+`[learned: gradient/apps/api/src/id.ts]`
+
 ## Checklist before first commit
 
 - [ ] GitHub repo created as `superduperlabs/super-duper-{noun}`

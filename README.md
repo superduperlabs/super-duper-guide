@@ -18,6 +18,7 @@ This guide is **public**. The app repos listed below are currently **private** �
 | [super-duper-data](https://github.com/superduperlabs/super-duper-data) | Brale customers who want a real-time analytics command center | Cloudflare Workers | `api.brale.xyz` (full orchestration) |
 | [super-duper-dashboard](https://github.com/superduperlabs/super-duper-dashboard) | Brale API users who want a self-hosted neobank dashboard | Cloudflare Workers + Next.js | `api.brale.xyz` (full orchestration) |
 | [super-duper-analysis](https://github.com/superduperlabs/super-duper-analysis) | Compliance teams needing transaction monitoring and investigation | Cloudflare Workers | `brale.network/api` (registry); own KYT API |
+| [gradient](https://github.com/bpmilne/gradient) | Financial institutions needing card issuing and stablecoin settlement | Cloudflare Workers | `api.brale.xyz` (full orchestration) |
 
 ## Start here
 
@@ -26,8 +27,9 @@ This guide is **public**. The app repos listed below are currently **private** �
 3. [templates/SEED-PROMPT.md](templates/SEED-PROMPT.md) — copy-paste bootstrap prompt for new apps
 4. [guide/brale-api.md](guide/brale-api.md) — Brale API patterns and pitfalls
 5. [guide/cloudflare-stack.md](guide/cloudflare-stack.md) — which Cloudflare primitive when
-6. [guide/csf-gsf.md](guide/csf-gsf.md) — Commons Stablecoin Format and Graph Standard Format
-7. [lessons/README.md](lessons/README.md) — how lessons flow back into this guide
+6. [guide/managed-accounts.md](guide/managed-accounts.md) — managed account onboarding, auto-sweep, KYB compliance
+7. [guide/csf-gsf.md](guide/csf-gsf.md) — Commons Stablecoin Format and Graph Standard Format
+8. [lessons/README.md](lessons/README.md) — how lessons flow back into this guide
 
 ## External references
 
@@ -59,6 +61,7 @@ Copy from [templates/](templates/) when starting a new app:
 - [data.md](lessons/data.md) — Super Duper Data
 - [dashboard.md](lessons/dashboard.md) — Super Duper Dashboard
 - [analysis.md](lessons/analysis.md) — Super Duper Analysis
+- [gradient.md](lessons/gradient.md) — Gradient
 
 ## License
 

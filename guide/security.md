@@ -83,6 +83,68 @@ PolicyEngine before every send: caps, allowlists, audit log.
 
 `[learned: super-duper-agent-wallet/policy.ts, audit.ts]`
 
+## Log redaction
+
+Apps that handle KYB/identity data must redact PII from structured logs before serialization — not just secrets, but any field that could contain personal information.
+
+### Pattern
+
+Use a regex that matches field **names** (not values) and replaces the value with `[REDACTED]`:
+
+```typescript
+const SENSITIVE_KEY = /ssn|ein|dob|tax_id|account_number|routing_number|phone_number|beneficial|controller|kyb|ubo/i;
+
+function redact(obj: Record<string, unknown>): Record<string, unknown> {
+  const result: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (SENSITIVE_KEY.test(key)) {
+      result[key] = "[REDACTED]";
+    } else if (typeof value === "object" && value !== null) {
+      result[key] = redact(value as Record<string, unknown>);
+    } else {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+```
+
+Apply to **every** log call, not just specific routes. This catches accidental logging of sensitive data anywhere in the stack.
+
+### Where this is used
+
+| App | Implementation |
+|-----|----------------|
+| **Gradient** | `log.ts` — all structured logging goes through redaction |
+
+`[learned: gradient/apps/api/src/log.ts]`
+
+## Passwordless email-code auth
+
+No-password authentication using 6-digit email codes. Simpler than OAuth/SAML for B2B apps where the user population is small and controlled.
+
+### Pattern
+
+| Component | Detail |
+|-----------|--------|
+| Code generation | `crypto.getRandomValues()` → 6-digit zero-padded string |
+| Storage | `email_codes` D1 table: `(id, email, code, expires_at, used, created_at)` |
+| TTL | 10 minutes |
+| Single-use | `UPDATE email_codes SET used = 1 WHERE id = ?` after verification |
+| Rate limiting | KV counter per email: max 3 codes per 10-minute window |
+| Comparison | Constant-time XOR loop (not `===`) to prevent timing attacks |
+| Delivery | Resend API with verified domain; falls back to console logging in dev |
+| Scope | Same code flow for login (existing user) and signup (new user) — the verify step determines the path |
+
+### Where this is used
+
+| App | Implementation |
+|-----|----------------|
+| **Gradient** | `email.ts` — `sendCode()` + `verifyCode()` |
+| **super-duper-data** | D1-backed session tokens (24h Bearer) |
+
+`[learned: gradient/apps/api/src/email.ts]`
+
 ## Internal routes
 
 `/api/internal/*` gated by `INTERNAL_SECRET` or `X-Internal-Secret` header.
@@ -91,6 +153,7 @@ PolicyEngine before every send: caps, allowlists, audit log.
 
 ## Related
 
+- [managed-accounts.md](managed-accounts.md) — KYB transit-only pattern, legal compliance
 - [templates/SECURITY.md](../templates/SECURITY.md)
 - [brale-api.md](brale-api.md) — webhook and OAuth patterns
 - [testing.md](testing.md) — security test suites
